@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Item extends Component {
+export default class List extends Component {
   render () {
     return (
       <div>
-
-        item view
+        home
       </div>
     )
   }

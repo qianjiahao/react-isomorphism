@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-export default class List extends Component {
+export default class Item extends Component {
   render () {
     return (
       <div>
 
-        list view
+        detail
       </div>
     )
   }
