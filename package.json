@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf dist",
-    "server": "DEBUG=server nodemon src/babel.js",
+    "server": "DEBUG=app nodemon src/babel.js",
     "dev": "webpack --config ./build/webpack.conf.dev.js -w",
     "build": "webpack --config ./build/webpack.conf.prod.js",
     "start": "npm run clean && npm run build && npm run server"
@@ -46,6 +46,7 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-router": "^2.5.0",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "socket.io": "^1.4.6"
   }
 }
