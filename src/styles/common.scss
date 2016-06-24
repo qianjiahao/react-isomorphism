@@ -56,8 +56,15 @@ html, body, #root {
     margin: 20px 0;
 
     .label {
+      display: block;
       color: #15323a;
       font-weight: 500;
+      text-decoration: none;
+
+      &:active, &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
 
     .excerpt {
@@ -72,7 +79,7 @@ html, body, #root {
       float: left;
       width: 30px;
       height: 30px;
-      border: 1px solid #eee;
+      border: 1px solid white;
       border-radius: 100%;
       text-align: center;
       line-height: 30px;

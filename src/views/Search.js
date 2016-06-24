@@ -5,10 +5,10 @@ import DataList from '../components/DataList.js'
 export default class Search extends Component {
   state = {
     value: '',  // 关键字
-    page: 1,    // 页数
+    page: 0,    // 页数
     data: [],   // 数据
     sum: '',    // 总数
-    time: ''    // 耗时
+    time: '',   // 耗时
   }
 
   render () {
@@ -23,6 +23,7 @@ export default class Search extends Component {
           data={this.state.data}
           sum={this.state.sum}
           time={this.state.time}
+          load={this.load}
         />
       </div>
     )
@@ -39,17 +40,29 @@ export default class Search extends Component {
   submit = (e) => {
     e.preventDefault()
     let q = this.state.value.trim().replace(new RegExp(' ', 'g'), '+')
-    let url = `https://segmentfault.com/search?q=${q}&page=${this.state.page}`
 
+    this.setState({
+      q: encodeURI(q),
+      page: 0
+    }, () => {
+      this.load(this.state.page)
+    })
+  }
+
+  load = () => {
     $.ajax({
       type: 'POST',
       url: '/search',
-      data: { url: url },
+      data: {
+        q: this.state.q,
+        page: ++this.state.page
+      },
       success: (data) => {
         this.setState({
-          data: data.data,
+          data: data.page == 1 ? data.data : this.state.data.concat(data.data),
           sum: data.sum,
-          time: data.time
+          time: data.time,
+          page: data.page
         })
       },
       error: (err) => {

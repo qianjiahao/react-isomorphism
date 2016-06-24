@@ -4,6 +4,7 @@ import { match, RouterContext } from 'react-router'
 import routes from '../views/routes.js'
 import fetch from '../lib/fetch.js'
 import cheerio from 'cheerio'
+import nconf from 'nconf'
 
 export default function (app) {
   app.get('*', (req, res) => {
@@ -26,9 +27,10 @@ export default function (app) {
 
   app.post('/search', (req, res) => {
     let startTime = new Date()
-    let url = req.body.url
-    console.log(url)
+    let url = `${nconf.get('url')}/search?q=${req.body.q}&page=${req.body.page}`
     const data = []
+
+    console.log(url)
     fetch(url).then((result) => {
       const $ = cheerio.load(result)
       let sum = $('.search-result h3.mt0').children().text()
@@ -71,7 +73,8 @@ export default function (app) {
       res.json({
         data: data,
         sum: sum,
-        time: endTime - startTime
+        time: endTime - startTime,
+        page: req.body.page
       })
     }, (err) => {
       console.log(err)

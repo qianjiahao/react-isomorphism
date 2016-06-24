@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf dist",
-    "server": "DEBUG=app nodemon src/babel.js",
+    "server": "DEBUG=app node src/babel.js",
+    "server:nodemon": "DEBUG=app nodemon src/babel.js",
     "dev": "webpack --config ./build/webpack.conf.dev.js -w",
     "build": "webpack --config ./build/webpack.conf.prod.js",
     "start": "npm run clean && npm run build && npm run server"

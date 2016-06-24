@@ -4,7 +4,27 @@ export default class DataLsit extends Component {
   static defaultProps = {
     data: [],
     sum: '',
-    time: ''
+    time: '',
+    load: () => {}
+  }
+
+  componentDidMount () {
+    $(window).scroll((e) => {
+      let limit = 100
+
+      let top = document.body.scrollTop
+      let rest = document.body.scrollHeight - document.body.clientHeight
+
+      console.log(top,rest - limit)
+      if(top >= rest - limit) {
+        this.props.load()
+      }
+
+    })
+  }
+
+  componentWillUnmount () {
+
   }
 
   render () {
@@ -43,7 +63,7 @@ export default class DataLsit extends Component {
             <div key={k} className="item">
               {avatar(v)}
               <div className="right">
-                <div className="label">{v.title}</div>
+                <a className="label" href={v.href}>{v.title}</a>
                 <span className="excerpt">{v.excerpt}</span>
               </div>
             </div>
@@ -54,7 +74,7 @@ export default class DataLsit extends Component {
             <div key={k} className="item">
               {avatar(v)}
               <div className="right">
-                <div className="label">{v.title}</div>
+                <a className="label" href={v.href}>{v.title}</a>
                 <span className="excerpt">{v.excerpt}</span>
               </div>
             </div>
@@ -65,7 +85,7 @@ export default class DataLsit extends Component {
             <div key={k} className="item">
               {avatar(v)}
               <div className="right">
-                <span className="label">{v.username}</span>
+                <a className="label" href={v.href}>{v.username}</a>
                 <span className="muted">{v.muted}</span>
                 <div>{v.badge}</div>
               </div>

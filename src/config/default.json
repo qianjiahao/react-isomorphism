@@ -1,5 +1,6 @@
 {
   "host": "localhost",
   "port": 1234,
-  "public": ["dist", "src/static"]
+  "public": ["dist", "src/static"],
+  "url": "https://segmentfault.com"
 }
