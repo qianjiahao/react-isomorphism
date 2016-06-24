@@ -4,7 +4,6 @@ export default class List extends Component {
   render () {
     return (
       <div>
-        home
       </div>
     )
   }

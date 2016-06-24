@@ -1,6 +1,7 @@
 var webpack = require('webpack')
 var path = require('path')
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var extractCSS = new ExtractTextPlugin('style.css');
 
 module.exports = {
   entry: {
@@ -15,14 +16,19 @@ module.exports = {
   plugins: [
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendors', '[name].js'),
-    new ExtractTextPlugin('style.css')
+    extractCSS,
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery"
+    })
   ],
   module: {
     loaders: [
       {
         test: /\.jsx?/, loaders: ['babel'], exclude: /node_modules/
       },{
-        test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css')
+        test: /\.scss$/, loader: extractCSS.extract(['css','sass'])
       },{
         test: /\.(png|jpg)$/, loader: 'url?limit=25000'
       },{
