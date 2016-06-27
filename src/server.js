@@ -3,7 +3,6 @@ import path from 'path'
 import nconf from 'nconf'
 import debug from 'debug'
 
-
 import socketManager from './lib/socket-manager.js'
 import nconfManager from './lib/nconf-manager.js'
 import serverManager from './lib/server-manager.js'

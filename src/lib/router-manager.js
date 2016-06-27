@@ -25,60 +25,7 @@ export default function (app) {
     })
   })
 
-  app.post('/search', (req, res) => {
-    let startTime = new Date()
-    let url = `${nconf.get('url')}/search?q=${req.body.q}&page=${req.body.page}`
-    const data = []
-
-    console.log(url)
-    fetch(url).then((result) => {
-      const $ = cheerio.load(result)
-      let sum = $('.search-result h3.mt0').children().text()
-
-      $('.search-result section').each((k, ele) => {
-
-        switch ($(ele).attr('class')) {
-          case 'widget-question':
-            data.push({
-              title: $(ele).find('a').text(),
-              href: 'https://segmentfault.com' + $(ele).find('a').attr('href'),
-              excerpt: $(ele).find('.excerpt').text(),
-              type: 'widget-question',
-              done: $(ele).find('.label-success').text() === '' ? false : true
-            })
-            break;
-
-          case 'widget-blog':
-            data.push({
-              title: $(ele).find('a').text(),
-              href: 'https://segmentfault.com' + $(ele).find('a').attr('href'),
-              excerpt: $(ele).find('.excerpt').text(),
-              type: 'widget-blog',
-            })
-            break;
-
-          case 'widget-user media':
-            data.push({
-              img: $(ele).find('img').attr('src'),
-              href: 'https://segmentfault.com' + $(ele).find('.pull-left').attr('href'),
-              username: $(ele).find('.media-body strong a').text(),
-              muted: $(ele).find('.media-body .text-muted').text(),
-              badge: $(ele).find('.media-body .badge--info').text(),
-              type: 'widget-user media',
-            })
-        }
-      })
-
-      let endTime = new Date()
-      res.json({
-        data: data,
-        sum: sum,
-        time: endTime - startTime,
-        page: req.body.page
-      })
-    }, (err) => {
-      console.log(err)
-    })
+  app.post('/heros', (req, res) => {
 
   })
 }

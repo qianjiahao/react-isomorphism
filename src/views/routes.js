@@ -3,14 +3,14 @@ import { Route, IndexRoute } from 'react-router'
 
 import App from './App.js'
 import Home from './Home.js'
-import Detail from './Detail.js'
-import Search from './Search.js'
+import Hero from './Hero.js'
+import Heros from './Heros.js'
+
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="/home" component={Home} />
-    <Route path="/detail" component={Detail} />
-    <Route path="/search" component={Search} />
+    <Route path="/heros" component={Heros} />
   </Route>
 )

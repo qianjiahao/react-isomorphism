@@ -2,5 +2,6 @@
   "host": "localhost",
   "port": 1234,
   "public": ["dist", "src/static"],
-  "url": "https://segmentfault.com"
+  "herosUrl": "http://lol.qq.com/web201310/info-heros.shtml",
+  "imgUrl": "http://ossweb-img.qq.com/images/lol/img/champion/"
 }

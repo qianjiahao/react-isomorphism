@@ -1,4 +1,6 @@
 import superagent from 'superagent'
+import nconf from 'nconf'
+import cheerio from 'cheerio'
 
 export default function fetch(url) {
   return new Promise((resolve, reject) => {
