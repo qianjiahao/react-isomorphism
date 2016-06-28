@@ -10,9 +10,9 @@
 <body>
 
     <div id="root"><%- appHtml %></div>
+    <script>window.APP_STORE = <%- appStore %></script>
     <script src="/vendors.js"></script>
     <script src="/app.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script>var socket = io()</script>
 </body>
 </html>
